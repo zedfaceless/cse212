@@ -8,12 +8,19 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
-
-        return []; // replace this return statement with your own
+        // PLAN:
+        // Step 1: Creating double array sized to hold length multiples.
+        // Step 2: loop from i = 0 up to i < length.
+        // Step 3: at each position i calculate number * (i + 1) and store it
+        //         in the array at position i. use (i + 1) because the first
+        //         multiple is 1x the number, not 0x (since i starts at 0).
+        // Step 4: after the loop finishes, return the filled array.
+        double[] result = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+        return result;
     }
 
     /// <summary>
@@ -25,9 +32,20 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // PLAN:
+        // Step 1: slice out the back portion the last 'amount' items.
+        //         use GetRange(data.Count - amount, amount) which starts at
+        //         index (Count - amount) and grabs 'amount' items.
+        // Step 2: slice out the front portion, everything before the back slice.
+        //         use GetRange(0, data.Count - amount) which starts at index 0
+        //         and grabs (Count - amount) items.
+        // Step 3: clear the original list so we can rebuild it in the new order.
+        // Step 4: add the BACK portion first (this becomes the new front),
+        //         then add the FRONT portion (this becomes the new back).
+        List<int> back = data.GetRange(data.Count - amount, amount);
+        List<int> front = data.GetRange(0, data.Count - amount);
+        data.Clear();
+        data.AddRange(back);
+        data.AddRange(front);
     }
 }
