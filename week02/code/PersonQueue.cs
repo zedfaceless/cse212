@@ -13,7 +13,10 @@ public class PersonQueue
     /// <param name="person">The person to add</param>
     public void Enqueue(Person person)
     {
-        _queue.Insert(0, person);
+        // FIX: Add to the BACK of the queue (end of the list), not the front.
+        // The original Insert(0, ...) combined with Dequeue removing from index 0
+        // caused the queue to behave like a stack (LIFO) instead of FIFO.
+        _queue.Add(person);
     }
 
     public Person Dequeue()
